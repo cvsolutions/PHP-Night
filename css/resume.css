@@ -1,0 +1,495 @@
+/* PRIMENTO RESUME STYLESHEET 
+    Document   : resume.css
+    Created on : April, 2012
+    Author     : Kobus Swartz
+    Description: Stylesheet for resume.html.
+
+All sections are marked to make it easier to navigate and change the css.
+The first section of the css file contains the basic styles for the theme, followed by the user styles for the specific content.*/
+
+/* Basic HTML Elements for Primento */
+
+body {
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	background: url("../img/resume-bg.png") #312b2b fixed repeat;
+	font-size: 14px;
+}
+
+* {
+	outline: none;
+}
+
+ @font-face {
+ 	font-family: 'Lobster 1.4';
+ 	src: url('Lobster 1.4.otf');
+ 	font-style: normal;
+}
+
+/* ===== Heading styles ===== */
+
+h1 {
+	font-size: 30px;
+	margin-top: 0;
+}
+h2 {
+	font-size: 28px;
+}
+h3 {
+	font-size: 26px;
+}
+h4 {
+	font-size: 24px;
+}
+h5 {
+	font-size: 22px;
+}
+h6 {
+	font-size: 18px;
+}
+
+/* ===== Heading Styles ===== */
+
+h1, h3 {
+	font-family: "Lobster 1.4";
+	font-weight: normal;
+	color: #201e1e;
+}
+
+h2, h4, h5, h6 {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #201e1e;
+}
+
+/* ===== Section Styles ===== */
+
+/* ===== Header Styles ===== */
+
+#container {
+	position: relative;
+	margin: 10px auto;
+	width: 980px;
+	padding: 10px;
+	background: #fff;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#intro {
+	text-align: center;
+}
+
+/* ===== Styles for Intro section at the top ===== */
+
+#intro h3 {
+	margin-top: 10px;
+	color: #4e4a4a;
+	font-weight: bold;
+}
+
+#intro em {
+	color: #201e1e;
+}
+
+#intro span {
+	color: #929292;
+}
+
+#intro img {
+	border-bottom: 3px dashed #929292;
+	padding-bottom: 10px;
+}
+
+/* ===== Styles for About Me ===== */
+
+#about-me {
+	padding-bottom: 40px;
+	border-bottom: 2px dashed #bfbfbf;
+}
+
+#about-me img {
+	float: left;
+	margin-right: 30px;
+	width: 95px;
+}
+
+#about-me p {
+	float: left;
+	width: 815px;
+	text-align: justify;
+	margin: 0;
+}
+
+/* ===== Styles for Skills ===== */
+
+#skills {
+	color: #fff;
+	float: left;
+	width: 470px;
+	padding-bottom: 40px;
+}
+
+#skills .graphs ul {
+	list-style-type: none;
+	padding-left: 0;
+	float: left;
+	margin: 0;
+}
+
+#skills ul li {
+	background: #ddd;
+	padding: 5px 0 5px 0;
+	margin-bottom: 5px;
+}
+
+/* ===== Graph Specific styles ===== */
+
+#skills ul li span.html {
+	background: #a85f5f;
+	padding: 5px 0 5px 10px;
+	padding-right: 360px;
+}
+
+#skills ul li span.css {
+	background: #a85f5f;
+	padding: 5px 0 5px 10px;
+	padding-right: 350px;
+}
+
+#skills ul li span.jquery {
+	background: #a85f5f;
+	padding: 5px 0 5px 10px;
+	padding-right: 250px;
+}
+
+#skills ul li span.php {
+	background: #a85f5f;
+	padding: 5px 0 5px 10px;
+	padding-right: 360px;
+}
+
+#skills ul li span.photoshop {
+	background: #a85f5f;
+	padding: 5px 0 5px 10px;
+	padding-right: 380px;
+}
+
+#skills ul li span.dreamweaver {
+	background: #a85f5f;
+	padding: 5px 0 5px 10px;
+	padding-right: 350px;
+}
+
+#skills ul li span.illustrator {
+	background: #a85f5f;
+	padding: 5px 0 5px 10px;
+	padding-right: 320px;
+}
+
+/* ===== Styles for Focus Points ===== */
+
+#focus-points {
+	float: left;
+	width: 470px;
+	margin-left: 40px;
+}
+
+#focus-points ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+#focus-points ul li {
+	padding-bottom: 10px;
+	overflow: hidden;
+}
+
+#focus-points ul li span {
+	font-size: 35px;
+	color: #cac8c8;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	margin-right: 25px;
+	float: left;
+	width: 20px;
+}
+
+
+#focus-points ul li p {
+	color: #201e1e;
+	display: block;
+	float: left;
+	margin: 0 0 5px 0;
+	width: 410px;
+}
+
+#focus-points {
+	padding-bottom: 40px;
+}
+
+#my-skills {
+	padding-top: 40px;
+	border-bottom: 2px dashed #bfbfbf;
+}
+
+/* ===== Styles for Work Experience Section ===== */
+
+#work-experience {
+	margin-top: 40px;
+	border-bottom: 2px dashed #bfbfbf;
+}
+
+#work-experience ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+#work-experience ul li {
+	color: #8f8f8f;
+	font-weight: bold;
+}
+
+#work-experience ul li span {
+	color: #a85f5f;
+	font-weight: normal;
+}
+
+
+#work-experience .listing {
+margin-bottom: 40px;
+}
+
+#work-experience .listing p {
+text-align: justify;
+}
+
+/* ===== Styles for Education Section ===== */
+
+#education {
+	margin-top: 40px;
+	border-bottom: 2px dashed #bfbfbf;
+	margin-bottom: 40px;
+}
+
+#education .edu-listing h6 {
+	color: #a85f5f;
+	margin: 0 0 15px 0;
+}
+
+#education .edu-listing h6 span {
+	display: block;
+	color: #8f8f8f;
+}
+
+#education .edu-listing p {
+	margin: 0;
+	text-align: justify;
+}
+
+#education .edu-listing {
+	margin-bottom: 40px;
+}
+
+/* ===== More Info Section ===== */
+
+#more-info {
+	border-bottom: 2px dashed #bfbfbf;
+	padding-bottom: 40px;
+}
+
+#information {
+	width: 470px;
+	float: left;
+	margin-right: 40px;
+}
+
+#information ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+#information ul li {
+	color: #666;
+	padding-bottom: 3px;
+}
+
+
+#information ul li strong {
+	color: #a85f5f;
+}
+
+/* ===== Styles for Interests ===== */
+
+#interests {
+	width: 470px;
+	float: left;
+}
+
+#interests ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+#interests ul li {
+	color: #666;
+	padding-bottom: 3px;
+}
+#interests ul li strong {
+	color: #a85f5f;
+}
+
+/* ===== Footer Styles ===== */
+
+#footer {
+	margin-top: 40px;
+}
+
+#footer .contact {
+	width: 470px;
+	float: left;
+	margin-right: 40px;
+}
+
+#footer .contact ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+#footer .contact li {
+	color: #666;
+}
+
+#footer .contact li span {
+	color: #000;
+}
+
+/* ===== Styles for Footer Social Section ===== */
+
+#footer .social {
+	width: 470px;
+	float: left;
+}
+
+#footer .social ul {
+	list-style-type: none;
+	padding-left: 0;
+	margin: 0;
+}
+
+#footer .social ul li{
+	float: left;
+	padding-right: 10px;
+}
+
+/* ===== Styles for Footer Button links ===== */
+
+#footer .footer-bottom p.left {
+	float: left;
+}
+
+#footer .footer-bottom p.right {
+	float: right;
+}
+
+p.right span, p.left span {
+	display: block;
+	color: #999;
+	padding-bottom: 10px
+}
+
+/* ===== Styles for Text Links, Specific to the Resume page ===== */
+
+a:link {
+	color: #a21313;
+	text-decoration: none;
+}
+
+a:active {
+	color: #a21313;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #251f1f;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #a21313;
+	text-decoration: none;
+}
+
+/* ===== Button Styles ===== */
+
+a.btn-alt1 {
+	background: #2d2d2d;
+	border: 1px solid #1f1c1c;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 7px 25px;
+	-webkit-transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	-ms-transition: all 0.8s ease;
+	-o-transition: all 0.8s ease;
+	transition: all 0.8s ease;
+	color: #fff;
+	display: block;
+	width: 60px;
+	margin-left: 45px;
+}
+
+a.btn-alt1:hover {
+	background: #3c3c3c;
+	border: 1px solid #1f1c1c;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 7px 25px;
+	-webkit-transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	-ms-transition: all 0.8s ease;
+	-o-transition: all 0.8s ease;
+	transition: all 0.8s ease;
+	color: #fff;
+}
+
+a.btn-alt2 {
+	background: #902828;
+	border: 1px solid #731e1e;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 7px 25px;
+	-webkit-transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	-ms-transition: all 0.8s ease;
+	-o-transition: all 0.8s ease;
+	transition: all 0.8s ease;
+	color: #fff;
+	display: block;
+	width: 55px;
+	margin-left: 40px;
+}
+
+a.btn-alt2:hover {
+	background: #7f2020;
+	border: 1px solid #731e1e;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 7px 25px;
+	-webkit-transition: all 0.8s ease;
+	-moz-transition: all 0.8s ease;
+	-ms-transition: all 0.8s ease;
+	-o-transition: all 0.8s ease;
+	transition: all 0.8s ease;
+	color: #fff;
+}
+
+/* END OF LAYOUT.CSS */
