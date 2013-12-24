@@ -1,0 +1,74 @@
+<?php echo $this->partial('global/admin-navbar.phtml'); ?>
+
+<div class="row">
+	<div class="col-md-12">
+		<p>&nbsp;</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<p class="lead">Risorse Internet</p>
+	</div>
+	<div class="col-md-6">
+		<p class="pull-right">
+			<a href="<?php echo $this->url('backoffice/directory/child-directory', array('action' => 'add')); ?>" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-plus"></span> Aggiungi Risorse Internet</a>
+		</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<?php if ($this->message): ?>
+		<div class="alert alert-<?php echo $this->message[0][0]; ?>">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			<div><?php echo $this->message[0][1]; ?></div>
+		</div>
+		<?php endif ?>
+
+		<table class="datatable table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Modifica</th>
+					<th>Cancella</th>
+					<th>Titolo dell'articolo</th>
+					<th>Nome categoria</th>
+					<th>Mostra sul sito</th>
+					<th>Pubblicazione</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($directory as $row): ?>
+					<tr>
+						<td><a href="<?php echo $this->url('backoffice/directory/child-directory', array('action' => 'edit', 'id' => $row['id'])); ?>" class="btn btn-primary">Modifica</a></td>
+						<td>
+							<a href="" data-toggle="modal" data-target="#DeleteModal_<?php echo $this->escapeHtml($row['id']); ?>" class="btn btn-danger">Cancella</a>
+							<div class="modal fade" id="DeleteModal_<?php echo $this->escapeHtml($row['id']); ?>" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title" id="">Cancella</h4>
+										</div>
+										<div class="modal-body">
+											<p>Sei sicuro di voler eliminare questo record?</p>
+											<p>"<?php echo $this->escapeHtml($row['fullname']); ?>"</p>
+										</div>
+										<div class="modal-footer">
+											<a href="<?php echo $this->url('backoffice/directory/child-directory', array('action' => 'delete', 'id' => $row['id'])); ?>" class="btn btn-danger">SI</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td><?php echo $this->escapehtml($row['fullname']); ?></td>
+						<td><?php echo $this->escapehtml($row['category_name']); ?></td>
+						<td><img src="/img/<?php echo $this->escapehtml($row['active']); ?>.png" alt=""></td>
+						<td><?php echo $this->dateFormat(new DateTime($row['publication']), IntlDateFormatter::MEDIUM, IntlDateFormatter::MEDIUM, "it_IT"); ?></td>
+					</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
+	</div>
+</div>

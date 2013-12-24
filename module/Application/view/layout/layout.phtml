@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<?php echo $this->headTitle('PHP Night | Guide e tutorial | Risorse')->setSeparator(' | ') . PHP_EOL; ?>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Concetto Vecchio">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/css/layout.css">
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">
+    stLight.options({
+    	publisher: "f37070c9-848c-4c69-a3c9-22ff65b717b7", 
+    	doNotHash: false, 
+    	doNotCopy: false, 
+    	hashAddressBar: false
+    });
+    </script>
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<p>&nbsp;</p>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="col-lg-3">
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<p><img src="/img/logo.gif" class="img-responsive" alt=""></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="well">
+							<p>Il nostro multimotore di ricerca offre un sistema di informazione diviso in varie sezioni tematiche, che andranno via via arricchendosi, nelle quali avrete modo di accedere a numerosi servizi creati su misura per la categoria prescelta.</p>
+							<p><i>Tutto quello che devi fare è cercare, cliccare e divertirti! Il servizio offerto è assolutamente gratuito...</i></p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+								<!-- php-night -->
+								<ins class="adsbygoogle"
+									style="display:inline-block;width:100%;height:240px"
+									data-ad-client="ca-pub-8908718940287985"
+									data-ad-slot="6505213513"></ins>
+									<script>
+									(adsbygoogle = window.adsbygoogle || []).push({});
+									</script>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-lg-9">
+
+				<div class="row">
+					<div class="col-lg-10">
+						<ul class="nav nav-pills">
+							<li class="active"><a href="<?php echo $this->url('home'); ?>">Home</a></li>
+							<?php foreach ($categories as $row): ?>
+								<li><a href="<?php echo $this->url('articoli', array('slug' => $row['slug'])); ?>"><?php echo $this->escapehtml($row['fullname']); ?></a></li>
+							<?php endforeach ?>
+						</ul>
+					</div>
+					<div class="col-lg-2">
+						<ul class="list-inline pull-right">
+							<li><a href=""><img src="/img/facebook.png" alt=""></a></li>
+							<li><a href=""><img src="/img/twitter.png" alt=""></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<p>&nbsp;</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<p><strong>il portale in cui puoi trovare quello che cerchi!</strong></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<form action="http://www.google.it" id="cse-search-box">
+							<div class="input-group">
+								<input type="text" name="q" class="form-control input-lg" />
+								<input type="hidden" name="cx" value="partner-pub-8908718940287985:5696131515" />
+								<input type="hidden" name="ie" value="UTF-8" />
+								<span class="input-group-btn">
+									<input type="submit" name="sa" class="btn btn-warning input-lg" value="Cerca!">
+								</span>
+							</div>
+						</form>
+						<script type="text/javascript" src="http://www.google.it/coop/cse/brand?form=cse-search-box&amp;lang=it"></script>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<p>&nbsp;</p>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-8">
+						<?php echo $this->content; ?>
+					</div>
+
+					<div class="col-lg-4">
+
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="list-group">
+									<a href="#" class="list-group-item active">
+										<h4 class="list-group-item-heading">Risorse e link utili</h4>
+										<p class="list-group-item-text">Ecco qui una serie di link utili, suddivisi per tipologia</p>
+									</a>
+									<a href="http://php.net" class="list-group-item">
+										<h4 class="list-group-item-heading">PHP: Hypertext Preprocessor</h4>
+										<p class="list-group-item-text">http://php.net</p>
+									</a>
+									<a href="http://www.ubuntu.com" class="list-group-item">
+										<h4 class="list-group-item-heading">Ubuntu: The world's most popular free OS</h4>
+										<p class="list-group-item-text">http://www.ubuntu.com</p>
+									</a>
+									<a href="https://github.com" class="list-group-item">
+										<h4 class="list-group-item-heading">GitHub · Build software better, together</h4>
+										<p class="list-group-item-text">https://github.com</p>
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+										<!-- php-night 2 -->
+										<ins class="adsbygoogle"
+										     style="display:inline-block;width:100%;height:600px"
+										     data-ad-client="ca-pub-8908718940287985"
+										     data-ad-slot="3272545511"></ins>
+										<script>
+										(adsbygoogle = window.adsbygoogle || []).push({});
+										</script>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<hr>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<p>© 2013 by Vecchio Concetto. All rights reserved.</p>
+			</div>
+		</div>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	var start = new Date();
+	var startsec = start.getTime();
+	var num = 0;
+	for( var i = 0; i < 250000; i++ ){
+		num++;
+	}
+
+	var stop  = new Date();
+	var stopsec = stop.getTime();
+	var loadtime = ( stopsec - startsec ) / 1000;
+	document.getElementById('total').innerHTML = '(caricati in: ' + loadtime + ' secondi)';
+	</script>
+</body>
+</html>

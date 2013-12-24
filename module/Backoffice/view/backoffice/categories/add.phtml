@@ -1,0 +1,36 @@
+<?php $this->form->prepare(); ?>
+<?php echo $this->partial('global/admin-navbar.phtml'); ?>
+
+<div class="row">
+	<div class="col-md-12">
+		<p>&nbsp;</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<p class="lead">Aggiungi Categoria</p>
+	</div>
+	<div class="col-md-6"></div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<?php echo $this->form()->openTag($form); ?>	
+		<div class="form-group">
+			<label for="">Nome categoria</label>
+			<?php echo $this->formRow($form->get('fullname')); ?>
+		</div>
+		<div class="form-group">
+			<label for="">URL Slugs</label>
+			<div class="input-group">
+				<span class="input-group-addon">http://www.php-night.it/articoli/</span>
+				<?php echo $this->formRow($form->get('slug')); ?>
+			</div>
+		</div>
+		<div class="form-group">
+			<?php echo $this->formElement($form->get('submit')); ?>
+		</div>
+		<?php echo $this->form()->closeTag(); ?>
+	</div>
+</div>

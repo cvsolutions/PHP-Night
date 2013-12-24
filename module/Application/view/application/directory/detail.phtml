@@ -1,0 +1,16 @@
+<?php $this->headTitle($row['fullname']); ?>
+
+<div class="row">
+	<div class="col-lg-12">
+		<h1><?php echo $this->escapehtml($row['fullname']); ?></h1>
+		<p>
+			<span class='st_facebook_hcount' displayText='Facebook'></span>
+			<span class='st_twitter_hcount' displayText='Tweet'></span>
+			<span class='st_googleplus_hcount' displayText='Google +'></span>
+			<span class='st_email_hcount' displayText='Email'></span>
+		</p>
+		<p><?php echo $this->escapehtml($row['description']); ?></p>
+		<hr>
+		<p><a href="<?php echo $this->escapehtml($row['website']); ?>" target="_blank" class="btn btn-danger">visita il sito internet</a></p>
+	</div>
+</div>

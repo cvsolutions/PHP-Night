@@ -1,0 +1,29 @@
+<?php if (count($articles) > 0): ?>
+	<div class="row">
+		<div class="col-lg-12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th><?php echo count($articles); ?> risultati <strong id="total"></strong></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($articles as $row): ?>
+						<tr>
+						<td><a href="<?php echo $this->url('link', array('slug' => $row['slug'])); ?>"><?php echo $this->escapehtml($row['fullname']); ?></a></td>
+						</tr>
+					<?php endforeach ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<?php else: ?>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="alert alert-danger alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				<strong>Spiacente</strong>, ma nessun risultato è stato trovato...
+			</div>
+		</div>
+	</div>
+<?php endif ?>
