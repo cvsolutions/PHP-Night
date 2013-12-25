@@ -1,32 +1,19 @@
 <?php
 namespace Application;
 
-use Zend\Mvc\MvcEvent;
-
 use Application\Model\CategoriesModel;
 use Application\Model\DirectoryModel;
 
+use Zend\Mvc\MvcEvent;
+
 /**
- * Module
- *
- * @uses
- *
- * @category Module
- * @package  Application
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class Module
+ * @package Application
  */
 class Module
 {
     /**
-     * onBootstrap
-     *
-     * @param mixed \MvcEvent.
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @param MvcEvent $e
      */
     public function onBootstrap(MvcEvent $e)
     {
@@ -38,11 +25,7 @@ class Module
     }
 
     /**
-     * getConfig
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return mixed
      */
     public function getConfig()
     {
@@ -50,11 +33,7 @@ class Module
     }
 
     /**
-     * getAutoloaderConfig
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return array
      */
     public function getAutoloaderConfig()
     {
@@ -66,26 +45,20 @@ class Module
     }
 
     /**
-     * getServiceConfig
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return array
      */
     public function getServiceConfig()
     {
         return array(
             'factories' => array(
-                'Application\Model\Categories' => function ($sm)
-                {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    return new CategoriesModel($dbAdapter);
-                },
-                'Application\Model\Directory' => function ($sm)
-                {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                    return new DirectoryModel($dbAdapter);
-                },
+                'Application\Model\Categories' => function ($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        return new CategoriesModel($dbAdapter);
+                    },
+                'Application\Model\Directory' => function ($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        return new DirectoryModel($dbAdapter);
+                    },
             )
         );
     }

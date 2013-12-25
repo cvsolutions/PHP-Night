@@ -1,32 +1,18 @@
 <?php
 namespace Backoffice;
 
-use Zend\Mvc\MvcEvent;
-use Zend\Authentication\AuthenticationService;
 use Zend\Authentication\Adapter\DbTable as AuthAdapter;
+use Zend\Authentication\AuthenticationService;
+use Zend\Mvc\MvcEvent;
 
 /**
- * Module
- *
- * @uses
- *
- * @category Module
- * @package  Backoffice
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class Module
+ * @package Backoffice
  */
 class Module
 {
-
     /**
-     * onBootstrap
-     *
-     * @param mixed \MvcEvent.
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @param MvcEvent $e
      */
     public function onBootstrap(MvcEvent $e)
     {
@@ -37,11 +23,7 @@ class Module
     }
 
     /**
-     * getAutoloaderConfig
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return array
      */
     public function getAutoloaderConfig()
     {
@@ -53,11 +35,7 @@ class Module
     }
 
     /**
-     * getConfig
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return mixed
      */
     public function getConfig()
     {
@@ -65,29 +43,24 @@ class Module
     }
 
     /**
-     * getServiceConfig
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return array
      */
     public function getServiceConfig()
     {
         return array(
             'factories' => array(
-                'AuthService' => function($sm)
-                {
-                    $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                'AuthService' => function ($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
 
-                    $authAdapter = new AuthAdapter($dbAdapter);
-                    $authAdapter->setIdentityColumn('usermail');
-                    $authAdapter->setCredentialColumn('pwd');
-                    $authAdapter->setCredentialTreatment('sha1(?) AND active = 1');
+                        $authAdapter = new AuthAdapter($dbAdapter);
+                        $authAdapter->setIdentityColumn('usermail');
+                        $authAdapter->setCredentialColumn('pwd');
+                        $authAdapter->setCredentialTreatment('sha1(?) AND active = 1');
 
-                    $authService = new AuthenticationService();
-                    $authService->setAdapter($authAdapter);
-                    return $authService;
-                },
+                        $authService = new AuthenticationService();
+                        $authService->setAdapter($authAdapter);
+                        return $authService;
+                    },
             ),
         );
     }

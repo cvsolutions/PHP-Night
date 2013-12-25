@@ -5,176 +5,121 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
- * DirectoryController
- *
- * @uses     AbstractActionController
- *
- * @category Controller
- * @package  Backoffice
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class DirectoryController
+ * @package Backoffice\Controller
  */
 class DirectoryController extends AbstractActionController
 {
-	const MSG = 'Operazione eseguita con successo';
+    const MSG = 'Operazione eseguita con successo';
+    protected $_DirectoryForm;
+    protected $_DirectoryModel;
 
-	/**
-	 * $_DirectoryForm
-	 *
-	 * @var mixed
-	 *
-	 * @access protected
-	 */
-	protected $_DirectoryForm;
+    /**
+     * @param mixed $DirectoryForm
+     */
+    public function setDirectoryForm($DirectoryForm)
+    {
+        $this->_DirectoryForm = $DirectoryForm;
+    }
 
-	/**
-	 * $_DirectoryModel
-	 *
-	 * @var mixed
-	 *
-	 * @access protected
-	 */
-	protected $_DirectoryModel;
+    /**
+     * @return mixed
+     */
+    public function getDirectoryForm()
+    {
+        return $this->_DirectoryForm;
+    }
 
-	/**
-	 * indexAction
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function indexAction()
-	{
-		return new ViewModel(array(
-				'directory' => $this->getDirectoryModel()->getFull(),
-				'message' => $this->flashMessenger()->getMessages()
-			));
-	}
+    /**
+     * @param mixed $DirectoryModel
+     */
+    public function setDirectoryModel($DirectoryModel)
+    {
+        $this->_DirectoryModel = $DirectoryModel;
+    }
 
-	/**
-	 * addAction
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function addAction()
-	{
-		$form = $this->getDirectoryForm();
-		$request = $this->getRequest();
+    /**
+     * @return mixed
+     */
+    public function getDirectoryModel()
+    {
+        return $this->_DirectoryModel;
+    }
 
-		if ($request->isPost()) {
+    /**
+     * @return array|ViewModel
+     */
+    public function indexAction()
+    {
+        return new ViewModel(array(
+            'directory' => $this->getDirectoryModel()->getFull(),
+            'message' => $this->flashMessenger()->getMessages()
+        ));
+    }
 
-			$post = $request->getPost();
-			$form->setData($post);
+    /**
+     * @return \Zend\Http\Response|ViewModel
+     */
+    public function addAction()
+    {
+        $form    = $this->getDirectoryForm();
+        $request = $this->getRequest();
 
-			if ($form->isValid()) {
-				$this->getDirectoryModel()->getInsert($post);
-				$this->flashMessenger()->addMessage(array('success', self::MSG));
-				return $this->redirect()->toRoute('backoffice/directory');
-			}
-		}
+        if ($request->isPost()) {
 
-		return new ViewModel(array(
-				'form' => $form
-			));
-	}
+            $post = $request->getPost();
+            $form->setData($post);
 
-	/**
-	 * editAction
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function editAction()
-	{
-		$ID = $this->params('id', 0);
-		$row = $this->getDirectoryModel()->getByID($ID);
+            if ($form->isValid()) {
+                $this->getDirectoryModel()->getInsert($post);
+                $this->flashMessenger()->addMessage(array('success', self::MSG));
+                return $this->redirect()->toRoute('backoffice/directory');
+            }
+        }
 
-		$form = $this->getDirectoryForm();
-		$form->setData($row);
+        return new ViewModel(array(
+            'form' => $form
+        ));
+    }
 
-		$request = $this->getRequest();
+    /**
+     * @return \Zend\Http\Response|ViewModel
+     */
+    public function editAction()
+    {
+        $ID  = $this->params('id', 0);
+        $row = $this->getDirectoryModel()->getByID($ID);
 
-		if ($request->isPost()) {
+        $form = $this->getDirectoryForm();
+        $form->setData($row);
 
-			$post = $request->getPost();
-			$form->setData($post);
+        $request = $this->getRequest();
 
-			if ($form->isValid()) {
-				$this->getDirectoryModel()->getUpdate($ID, $post);
-				$this->flashMessenger()->addMessage(array('success', self::MSG));
-				return $this->redirect()->toRoute('backoffice/directory');
-			}
-		}
+        if ($request->isPost()) {
 
-		return new ViewModel(array(
-				'form' => $form
-			));
-	}
+            $post = $request->getPost();
+            $form->setData($post);
 
-	/**
-	 * deleteAction
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function deleteAction()
-	{
-		$ID = $this->params('id', 0);
-		$this->getDirectoryModel()->getDelete($ID);
-		$this->flashMessenger()->addMessage(array('success', self::MSG));
-		return $this->redirect()->toRoute('backoffice/directory');
-	}
+            if ($form->isValid()) {
+                $this->getDirectoryModel()->getUpdate($ID, $post);
+                $this->flashMessenger()->addMessage(array('success', self::MSG));
+                return $this->redirect()->toRoute('backoffice/directory');
+            }
+        }
 
-	/**
-	 * Gets the value of _DirectoryForm.
-	 *
-	 * @return mixed
-	 */
-	public function getDirectoryForm()
-	{
-		return $this->_DirectoryForm;
-	}
+        return new ViewModel(array(
+            'form' => $form
+        ));
+    }
 
-	/**
-	 * Sets the value of _DirectoryForm.
-	 *
-	 * @param mixed $_DirectoryForm the _DirectoryForm
-	 *
-	 * @return self
-	 */
-	public function setDirectoryForm($DirectoryForm)
-	{
-		$this->_DirectoryForm = $DirectoryForm;
-
-		return $this;
-	}
-
-	/**
-	 * Gets the value of _DirectoryModel.
-	 *
-	 * @return mixed
-	 */
-	public function getDirectoryModel()
-	{
-		return $this->_DirectoryModel;
-	}
-
-	/**
-	 * Sets the value of _DirectoryModel.
-	 *
-	 * @param mixed $_DirectoryModel the _DirectoryModel
-	 *
-	 * @return self
-	 */
-	public function setDirectoryModel($DirectoryModel)
-	{
-		$this->_DirectoryModel = $DirectoryModel;
-
-		return $this;
-	}
+    /**
+     * @return \Zend\Http\Response
+     */
+    public function deleteAction()
+    {
+        $ID = $this->params('id', 0);
+        $this->getDirectoryModel()->getDelete($ID);
+        $this->flashMessenger()->addMessage(array('success', self::MSG));
+        return $this->redirect()->toRoute('backoffice/directory');
+    }
 }

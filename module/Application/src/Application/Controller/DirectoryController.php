@@ -5,100 +5,23 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
- * DirectoryController
- *
- * @uses     AbstractActionController
- *
- * @category Controller
- * @package  Application
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class DirectoryController
+ * @package Application\Controller
  */
 class DirectoryController extends AbstractActionController
 {
-    /**
-     * $_CategoriesModel
-     *
-     * @var mixed
-     *
-     * @access protected
-     */
     protected $_CategoriesModel;
-
-    /**
-     * $_DirectoryModel
-     *
-     * @var mixed
-     *
-     * @access protected
-     */
     protected $_DirectoryModel;
 
     /**
-     * indexAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @param mixed $CategoriesModel
      */
-    public function indexAction()
+    public function setCategoriesModel($CategoriesModel)
     {
-        $q = $this->getRequest()->getQuery('q', false);
-        return new ViewModel(array(
-                'q' => $q,
-                'articles' => $this->getDirectoryModel()->getBySearch($q)
-            ));
+        $this->_CategoriesModel = $CategoriesModel;
     }
 
     /**
-     * categoryAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     */
-    public function categoryAction()
-    {
-        $slug = $this->params('slug', '');
-        $row = $this->getCategoriesModel()->getBySlug($slug);
-        if (empty($row)) $this->getResponse()->setStatusCode(404);
-        return new ViewModel(array(
-                'category' => $row,
-                'articles' => $this->getDirectoryModel()->getByCategory($row['id'])
-            ));
-    }
-
-    /**
-     * tagAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     */
-    public function tagAction()
-    {
-        return new ViewModel();
-    }
-
-    /**
-     * detailAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
-     */
-    public function detailAction()
-    {
-        $slug = $this->params('slug', '');
-        $row = $this->getDirectoryModel()->getBySlug($slug);
-        if(empty($row)) throw new \Exception('Questo Link non esiste...');
-        return new ViewModel(array('row' => $row));
-    }
-
-    /**
-     * Gets the value of _CategoriesModel.
-     *
      * @return mixed
      */
     public function getCategoriesModel()
@@ -107,22 +30,14 @@ class DirectoryController extends AbstractActionController
     }
 
     /**
-     * Sets the value of _CategoriesModel.
-     *
-     * @param mixed $_CategoriesModel the _CategoriesModel
-     *
-     * @return self
+     * @param mixed $DirectoryModel
      */
-    public function setCategoriesModel($CategoriesModel)
+    public function setDirectoryModel($DirectoryModel)
     {
-        $this->_CategoriesModel = $CategoriesModel;
-
-        return $this;
+        $this->_DirectoryModel = $DirectoryModel;
     }
 
     /**
-     * Gets the value of _DirectoryModel.
-     *
      * @return mixed
      */
     public function getDirectoryModel()
@@ -131,16 +46,49 @@ class DirectoryController extends AbstractActionController
     }
 
     /**
-     * Sets the value of _DirectoryModel.
-     *
-     * @param mixed $_DirectoryModel the _DirectoryModel
-     *
-     * @return self
+     * @return array|ViewModel
      */
-    public function setDirectoryModel($DirectoryModel)
+    public function indexAction()
     {
-        $this->_DirectoryModel = $DirectoryModel;
+        $q = $this->getRequest()->getQuery('q', false);
+        return new ViewModel(array(
+            'q' => $q,
+            'articles' => $this->getDirectoryModel()->getBySearch($q)
+        ));
+    }
 
-        return $this;
+    /**
+     * @return ViewModel
+     */
+    public function categoryAction()
+    {
+        $slug = $this->params('slug', '');
+        $row  = $this->getCategoriesModel()->getBySlug($slug);
+        if (empty($row)) $this->getResponse()->setStatusCode(404);
+
+        return new ViewModel(array(
+            'category' => $row,
+            'articles' => $this->getDirectoryModel()->getByCategory($row['id'])
+        ));
+    }
+
+    /**
+     * @return ViewModel
+     */
+    public function tagAction()
+    {
+        return new ViewModel();
+    }
+
+    /**
+     * @return ViewModel
+     * @throws \Exception
+     */
+    public function detailAction()
+    {
+        $slug = $this->params('slug', '');
+        $row  = $this->getDirectoryModel()->getBySlug($slug);
+        if (empty($row)) throw new \Exception('Questo Link non esiste...');
+        return new ViewModel(array('row' => $row));
     }
 }

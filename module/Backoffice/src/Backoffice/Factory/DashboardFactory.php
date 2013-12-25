@@ -1,38 +1,25 @@
 <?php
 namespace Backoffice\Factory;
 
+use Backoffice\Controller\DashboardController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Backoffice\Controller\DashboardController;
 
 /**
- * DashboardFactory
- *
- * @uses     implements
- *
- * @category Factory
- * @package  Backoffice
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class DashboardFactory
+ * @package Backoffice\Factory
  */
 class DashboardFactory implements FactoryInterface
 {
+    /**
+     * @param ServiceLocatorInterface $serviceLocator
+     * @return DashboardController|mixed
+     */
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        $sm = $serviceLocator->getServiceLocator();
 
-	/**
-	 * createService
-	 *
-	 * @param mixed \ServiceLocatorInterface.
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function createService(ServiceLocatorInterface $serviceLocator)
-	{
-		$sm = $serviceLocator->getServiceLocator();
-
-		$controller = new DashboardController();
-		return $controller;
-	}
+        $controller = new DashboardController();
+        return $controller;
+    }
 }

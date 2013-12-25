@@ -5,62 +5,36 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
- * IndexController
- *
- * @uses     AbstractActionController
- *
- * @category Controller
- * @package  Application
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class IndexController
+ * @package Application\Controller
  */
 class IndexController extends AbstractActionController
 {
-	/**
-	 * $_DirectoryModel
-	 *
-	 * @var mixed
-	 *
-	 * @access protected
-	 */
-	protected $_DirectoryModel;
+    protected $_DirectoryModel;
 
-	/**
-	 * indexAction
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function indexAction()
-	{
-		return new ViewModel(array(
-				'articles' => $this->getDirectoryModel()->getByHome()
-			));
-	}
+    /**
+     * @param mixed $DirectoryModel
+     */
+    public function setDirectoryModel($DirectoryModel)
+    {
+        $this->_DirectoryModel = $DirectoryModel;
+    }
 
-	/**
-	 * Gets the value of _DirectoryModel.
-	 *
-	 * @return mixed
-	 */
-	public function getDirectoryModel()
-	{
-		return $this->_DirectoryModel;
-	}
+    /**
+     * @return mixed
+     */
+    public function getDirectoryModel()
+    {
+        return $this->_DirectoryModel;
+    }
 
-	/**
-	 * Sets the value of _DirectoryModel.
-	 *
-	 * @param mixed $_DirectoryModel the _DirectoryModel
-	 *
-	 * @return self
-	 */
-	public function setDirectoryModel($DirectoryModel)
-	{
-		$this->_DirectoryModel = $DirectoryModel;
-
-		return $this;
-	}
+    /**
+     * @return array|ViewModel
+     */
+    public function indexAction()
+    {
+        return new ViewModel(array(
+            'articles' => $this->getDirectoryModel()->getByHome()
+        ));
+    }
 }

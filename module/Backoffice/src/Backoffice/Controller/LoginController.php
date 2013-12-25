@@ -5,142 +5,96 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
- * DirectoryController
- *
- * @uses     AbstractActionController
- *
- * @category Controller
- * @package  Backoffice
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class LoginController
+ * @package Backoffice\Controller
  */
 class LoginController extends AbstractActionController
 {
-	/**
-	 * $_LoginForm
-	 *
-	 * @var mixed
-	 *
-	 * @access protected
-	 */
-	protected $_LoginForm;
+    protected $_LoginForm;
+    protected $_AuthAdapter;
 
-	/**
-	 * $_AuthAdapter
-	 *
-	 * @var mixed
-	 *
-	 * @access protected
-	 */
-	protected $_AuthAdapter;
+    /**
+     * @param mixed $AuthAdapter
+     */
+    public function setAuthAdapter($AuthAdapter)
+    {
+        $this->_AuthAdapter = $AuthAdapter;
+    }
 
-	/**
-	 * indexAction
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function indexAction()
-	{
-		$form = $this->getLoginForm();
-		$request = $this->getRequest();
+    /**
+     * @return mixed
+     */
+    public function getAuthAdapter()
+    {
+        return $this->_AuthAdapter;
+    }
 
-		if ($request->isPost()) {
+    /**
+     * @param mixed $LoginForm
+     */
+    public function setLoginForm($LoginForm)
+    {
+        $this->_LoginForm = $LoginForm;
+    }
 
-			$post = $request->getPost();
-			$form->setData($post);
+    /**
+     * @return mixed
+     */
+    public function getLoginForm()
+    {
+        return $this->_LoginForm;
+    }
 
-			if ($form->isValid()) {
+    /**
+     * @return array|\Zend\Http\Response|ViewModel
+     */
+    public function indexAction()
+    {
+        $form    = $this->getLoginForm();
+        $request = $this->getRequest();
 
-				$this->getAuthAdapter()->getAdapter()->setTableName('pn_auth');
-				$this->getAuthAdapter()->getAdapter()->setIdentity($post->get('usermail'));
-				$this->getAuthAdapter()->getAdapter()->setCredential($post->get('pwd'));
+        if ($request->isPost()) {
 
-				$result = $this->getAuthAdapter()->authenticate();
+            $post = $request->getPost();
+            $form->setData($post);
 
-				if ($result->isValid()) {
+            if ($form->isValid()) {
 
-					$user = $this->getAuthAdapter()->getAdapter()->getResultRowObject();
-					$this->getAuthAdapter()->getStorage()->write($user);
-					return $this->redirect()->toRoute('backoffice/dashboard');
+                $this->getAuthAdapter()->getAdapter()->setTableName('pn_auth');
+                $this->getAuthAdapter()->getAdapter()->setIdentity($post->get('usermail'));
+                $this->getAuthAdapter()->getAdapter()->setCredential($post->get('pwd'));
 
-				} else {
+                $result = $this->getAuthAdapter()->authenticate();
 
-					$this->flashMessenger()->addMessage(array(
-							'danger',
-							'Indirizzo E-mail o password errati!'
-						));
-					return $this->redirect()->toRoute('backoffice');
-				}
-			}
-		}
+                if ($result->isValid()) {
 
-		return new ViewModel(array(
-				'form' => $form,
-				'message' => $this->flashMessenger()->getMessages()
-			));
-	}
+                    $user = $this->getAuthAdapter()->getAdapter()->getResultRowObject();
+                    $this->getAuthAdapter()->getStorage()->write($user);
+                    return $this->redirect()->toRoute('backoffice/dashboard');
 
-	/**
-	 * logoutAction
-	 *
-	 * @access public
-	 *
-	 * @return mixed Value.
-	 */
-	public function logoutAction()
-	{
-		$this->getAuthAdapter()->clearIdentity();
-		return $this->redirect()->toRoute('home');
-	}
+                } else {
 
-	/**
-	 * Gets the value of _LoginForm.
-	 *
-	 * @return mixed
-	 */
-	public function getLoginForm()
-	{
-		return $this->_LoginForm;
-	}
+                    $this->flashMessenger()->addMessage(array(
+                        'danger',
+                        'Indirizzo E-mail o password errati!'
+                    ));
+                    return $this->redirect()->toRoute('backoffice');
+                }
+            }
+        }
 
-	/**
-	 * Sets the value of _LoginForm.
-	 *
-	 * @param mixed $_LoginForm the _LoginForm
-	 *
-	 * @return self
-	 */
-	public function setLoginForm($LoginForm)
-	{
-		$this->_LoginForm = $LoginForm;
+        return new ViewModel(array(
+            'form' => $form,
+            'message' => $this->flashMessenger()->getMessages()
+        ));
+    }
 
-		return $this;
-	}
-
-	/**
-	 * Gets the value of _AuthAdapter.
-	 *
-	 * @return mixed
-	 */
-	public function getAuthAdapter()
-	{
-		return $this->_AuthAdapter;
-	}
-
-	/**
-	 * Sets the value of _AuthAdapter.
-	 *
-	 * @param mixed $_AuthAdapter the _AuthAdapter
-	 *
-	 * @return self
-	 */
-	public function setAuthAdapter($AuthAdapter)
-	{
-		$this->_AuthAdapter = $AuthAdapter;
-
-		return $this;
-	}
+    /**
+     * @return \Zend\Http\Response
+     */
+    public function logoutAction()
+    {
+        $this->getAuthAdapter()->clearIdentity();
+        return $this->redirect()->toRoute('home');
+    }
 }

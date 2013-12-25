@@ -5,63 +5,64 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 /**
- * CategoriesController
- *
- * @uses     AbstractActionController
- *
- * @category Controller
- * @package  Backoffice
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class CategoriesController
+ * @package Backoffice\Controller
  */
 class CategoriesController extends AbstractActionController
 {
     const MSG = 'Operazione eseguita con successo';
-
-    /**
-     * $_CategoryForm
-     *
-     * @var mixed
-     *
-     * @access protected
-     */
     protected $_CategoryForm;
-
-    /**
-     * $_CategoriesModel
-     *
-     * @var mixed
-     *
-     * @access protected
-     */
     protected $_CategoriesModel;
 
     /**
-     * indexAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @param mixed $CategoriesModel
+     */
+    public function setCategoriesModel($CategoriesModel)
+    {
+        $this->_CategoriesModel = $CategoriesModel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoriesModel()
+    {
+        return $this->_CategoriesModel;
+    }
+
+    /**
+     * @param mixed $CategoryForm
+     */
+    public function setCategoryForm($CategoryForm)
+    {
+        $this->_CategoryForm = $CategoryForm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoryForm()
+    {
+        return $this->_CategoryForm;
+    }
+
+    /**
+     * @return array|ViewModel
      */
     public function indexAction()
     {
         return new ViewModel(array(
-                'categories' => $this->getCategoriesModel()->getFull(),
-                'message' => $this->flashMessenger()->getMessages()
-            ));
+            'categories' => $this->getCategoriesModel()->getFull(),
+            'message' => $this->flashMessenger()->getMessages()
+        ));
     }
 
     /**
-     * addAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return \Zend\Http\Response|ViewModel
      */
     public function addAction()
     {
-        $form = $this->getCategoryForm();
+        $form    = $this->getCategoryForm();
         $request = $this->getRequest();
 
         if ($request->isPost()) {
@@ -77,20 +78,16 @@ class CategoriesController extends AbstractActionController
         }
 
         return new ViewModel(array(
-                'form' => $form
-            ));
+            'form' => $form
+        ));
     }
 
     /**
-     * editAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return \Zend\Http\Response|ViewModel
      */
     public function editAction()
     {
-        $ID = $this->params('id', 0);
+        $ID  = $this->params('id', 0);
         $row = $this->getCategoriesModel()->getByID($ID);
 
         $form = $this->getCategoryForm();
@@ -111,16 +108,12 @@ class CategoriesController extends AbstractActionController
         }
 
         return new ViewModel(array(
-                'form' => $form
-            ));
+            'form' => $form
+        ));
     }
 
     /**
-     * deleteAction
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @return \Zend\Http\Response
      */
     public function deleteAction()
     {
@@ -128,53 +121,5 @@ class CategoriesController extends AbstractActionController
         $this->getCategoriesModel()->getDelete($ID);
         $this->flashMessenger()->addMessage(array('success', self::MSG));
         return $this->redirect()->toRoute('backoffice/categories');
-    }
-
-    /**
-     * Gets the value of _CategoryForm.
-     *
-     * @return mixed
-     */
-    public function getCategoryForm()
-    {
-        return $this->_CategoryForm;
-    }
-
-    /**
-     * Sets the value of _CategoryForm.
-     *
-     * @param mixed $_CategoryForm the _CategoryForm
-     *
-     * @return self
-     */
-    public function setCategoryForm($CategoryForm)
-    {
-        $this->_CategoryForm = $CategoryForm;
-
-        return $this;
-    }
-
-    /**
-     * Gets the value of _CategoriesModel.
-     *
-     * @return mixed
-     */
-    public function getCategoriesModel()
-    {
-        return $this->_CategoriesModel;
-    }
-
-    /**
-     * Sets the value of _CategoriesModel.
-     *
-     * @param mixed $_CategoriesModel the _CategoriesModel
-     *
-     * @return self
-     */
-    public function setCategoriesModel($CategoriesModel)
-    {
-        $this->_CategoriesModel = $CategoriesModel;
-
-        return $this;
     }
 }

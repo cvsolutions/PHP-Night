@@ -5,48 +5,26 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * ConvertResultSetSQLtoArray
- *
- * @uses     implements
- *
- * @category Service
- * @package  Backoffice
- * @author   Concetto Vecchio <info@cvsolutions.it>
- * @license  http://framework.zend.com/license/new-bsd New BSD License
- * @link     http://www.php-night.it
+ * Class ConvertResultSetSQLtoArray
+ * @package Backoffice\Service
  */
 class ConvertResultSetSQLtoArray implements ServiceLocatorAwareInterface
 {
     /**
-     * $ServiceLocator
-     *
      * @var ServiceLocatorInterface
-     *
-     * @access protected
      */
     protected $ServiceLocator;
 
     /**
-     * getSelectCategories
-     *
-     * @access public
-     *
-     * @return mixed Value.
+     * @param \Zend\ServiceManager\ServiceLocatorInterface $ServiceLocator
      */
-    public function getSelectCategories()
+    public function setServiceLocator(ServiceLocatorInterface $ServiceLocator)
     {
-        $Categories = $this->getServiceLocator()->get('Application\Model\Categories');
-        $getFull = $Categories->getFull();
-        foreach ($getFull as $row) {
-            $option[$row['id']] = $row['fullname'];
-        }
-        return $option;
+        $this->ServiceLocator = $ServiceLocator;
     }
 
     /**
-     * Gets the $ServiceLocator.
-     *
-     * @return ServiceLocatorInterface
+     * @return \Zend\ServiceManager\ServiceLocatorInterface
      */
     public function getServiceLocator()
     {
@@ -54,16 +32,15 @@ class ConvertResultSetSQLtoArray implements ServiceLocatorAwareInterface
     }
 
     /**
-     * Sets the $ServiceLocator.
-     *
-     * @param ServiceLocatorInterface $ServiceLocator the ServiceLocator
-     *
-     * @return self
+     * @return mixed
      */
-    public function setServiceLocator(ServiceLocatorInterface $ServiceLocator)
+    public function getSelectCategories()
     {
-        $this->ServiceLocator = $ServiceLocator;
-
-        return $this;
+        $Categories = $this->getServiceLocator()->get('Application\Model\Categories');
+        $getFull    = $Categories->getFull();
+        foreach ($getFull as $row) {
+            $option[$row['id']] = $row['fullname'];
+        }
+        return $option;
     }
 }
