@@ -81,7 +81,7 @@
 					<div class="col-lg-10">
 						<ul class="nav nav-pills">
 							<li class="active"><a href="<?php echo $this->url('home'); ?>">Home</a></li>
-							<?php foreach ($categories as $row): ?>
+							<?php foreach ($categories_top as $row): ?>
 								<li><a href="<?php echo $this->url('articoli', array('slug' => $row['slug'])); ?>"><?php echo $this->escapehtml($row['fullname']); ?></a></li>
 							<?php endforeach ?>
 						</ul>
@@ -133,6 +133,16 @@
 					</div>
 
 					<div class="col-lg-4">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="list-group">
+                                    <?php foreach ($categories_right as $row): ?>
+                                        <a href="<?php echo $this->url('articoli', array('slug' => $row['slug'])); ?>" class="list-group-item"><?php echo $this->escapehtml($row['fullname']); ?></a>
+                                    <?php endforeach ?>
+                                </div>
+                            </div>
+                        </div>
 
 						<div class="row">
 							<div class="col-lg-12">

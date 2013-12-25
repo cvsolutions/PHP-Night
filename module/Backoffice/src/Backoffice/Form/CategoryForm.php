@@ -50,7 +50,23 @@ class CategoryForm extends Form
 				)
 			));
 
-		$this->add(array(
+        $this->add(array(
+            'name' => 'menu',
+            'type' => 'Select',
+            'attributes' => array(
+                'required' => 'required',
+                'class' => 'form-control input-lg'
+            ),
+            'options' => array(
+                'empty_option' => '- Seleziona -',
+                'value_options' => array(
+                    1 => 'Top',
+                    2 => 'Right'
+                )
+            )
+        ));
+
+        $this->add(array(
 				'name' => 'submit',
 				'attributes' => array(
 					'type' => 'Submit',

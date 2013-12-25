@@ -59,6 +59,16 @@ class CategoriesModel
 		return $statement->execute();
 	}
 
+    public function getFullByMenu($menu = 0)
+    {
+        $select = $this->sql->select();
+        $select->from(self::TABLE);
+        $select->where(array('menu' => $menu));
+        $select->order('fullname ASC');
+        $statement = $this->sql->prepareStatementForSqlObject($select);
+        return $statement->execute();
+    }
+
 	/**
 	 * getByID
 	 *
@@ -110,8 +120,9 @@ class CategoriesModel
 	{
 		$insert = $this->sql->insert(self::TABLE);
 		$insert->values(array(
-				'fullname' => $form['fullname'],
-				'slug' => $form['slug']
+            'fullname' => $form['fullname'],
+            'slug' => $form['slug'],
+            'menu' => $form['menu']
 			));
 		$statement = $this->sql->prepareStatementForSqlObject($insert);
 		return $statement->execute();
@@ -132,8 +143,9 @@ class CategoriesModel
 		$update = $this->sql->update();
 		$update->table(self::TABLE);
 		$update->set(array(
-				'fullname' => $form['fullname'],
-				'slug' => $form['slug']
+            'fullname' => $form['fullname'],
+            'slug' => $form['slug'],
+            'menu' => $form['menu']
 			));
 		$update->where(array('id' => $id));
 		$updateStatement = $this->sql->prepareStatementForSqlObject($update);

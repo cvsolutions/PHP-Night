@@ -33,7 +33,8 @@ class Module
         $Categories = $e->getApplication()->getServiceManager()->get('Application\Model\Categories');
 
         $vm = $e->getViewModel();
-        $vm->setVariable('categories', $Categories->getFull());
+        $vm->setVariable('categories_top', $Categories->getFullByMenu(1));
+        $vm->setVariable('categories_right', $Categories->getFullByMenu(2));
     }
 
     /**
